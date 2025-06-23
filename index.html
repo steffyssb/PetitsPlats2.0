@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Les Pétit Plats</title>
+    </head>
+        <body>
+            <header>
+                <!--main search bar-->
+                <h1>Les Petit Plats</h1>
+                <p>find your favorite recipie</p>
+                <input type="text"
+                id="main-search"
+                placeholder="search for a recipie"
+                aria-label="Main Search Bar">
+            </header>
+            <section id="filters">
+                <!--tags filter section-->
+                <div class="dropdown" id="ingredient-filter">
+                    <label for="ingredients">Ingredients</label>
+                    <input type="text" id="ingredients" placeholder="search for ingredients">
+                    <ul id="ingredients-list"></ul>
+                </div>
+                <div class="dropdown" id="appliences-filter">
+                    <label for="appliences">Appliences</label>
+                    <input type="text" id="appliences" placeholder="search for appliences">
+                    <ul id="appliences-list"></ul>
+                </div>
+                <div class="dropdown" id="utensils-filter">
+                    <label for="utensils">Utensils</label>
+                    <input type="text" id="utensils" placeholder="search for utensils">
+                    <ul id="utensils-list"></ul>
+                </div>
+            </section>
+            <!--selected tags-->
+            <section id="selected-tags">
+                <!--selected tags will appear here-->
+            </section>
+            <!--main recipies-->
+            <main id="recipies-container">
+                <!--card for recipies will be installed here-->
+            </main>
+            <!--scripts-->
+            <script src="./scripts/recipes.js"></script>
+            <script src="./scripts/render.js"></script>
+            <script src="./scripts/search.js"></script>
+        </body>
+</html>
