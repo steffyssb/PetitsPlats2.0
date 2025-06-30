@@ -1,0 +1,74 @@
+header img {
+    width: 100%;
+    height: 660px;
+    position: relative;
+}
+header h1 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    color: white;
+}
+header p {
+    position: absolute;
+    font-size: 44px;
+    color: #ffd15d;
+    top: 40%;
+    left: 14%;
+    margin: 0;
+}
+.searchbar {
+    position: absolute;
+    bottom: 35%;
+    left: 16%;
+}
+#main-search {
+        width: 800px;
+    height: 35px;
+    border-radius: 10px;
+}
+.search-icon-btn {
+    width: 36px;
+    height: 33px;
+    position: absolute;
+    top: 4px;
+    right: 1%;
+    background-color: black;
+    border-radius: 9px;
+}
+.fa-solid {
+    color: white;
+}
+#filters {
+    display: flex;
+    padding: 20px;
+    gap: 15%;
+    background-color: lightgray;
+}
+.dropdown-toggle {
+    width: 105px;
+    height: 40px;
+    background-color: white;
+    border-radius: 5px;
+}
+.recipie-card img {
+    width: 234px;
+    height: 250px;
+}
+.recipie-card {
+    display: flex;
+    flex-direction: column;
+    width: 234px;
+    border: 2px solid #CCC;
+    border-radius: 9px;
+    padding: 15px;
+    background-color: white;
+
+}
+#recipies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: lightgray;
+    gap: 60px;
+}

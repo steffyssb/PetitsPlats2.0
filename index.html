@@ -3,36 +3,58 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+    <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="style.css">
     <title>Les Pétit Plats</title>
     </head>
         <body>
             <header>
                 <!--main search bar-->
+                <img src="./JSON_recipes/headerimg.jpg">
                 <h1>Les Petit Plats</h1>
-                <p>find your favorite recipie</p>
+                <p>CHERCHES PARMI PLUS DE 1500 RECETTES<br>DE QUOTIDIEN,SIMPLES ET DELICIEUSES</p>
+                <div class="searchbar">
                 <input type="text"
                 id="main-search"
-                placeholder="search for a recipie"
+                placeholder="Recherche une recette,un ingrédient.."
                 aria-label="Main Search Bar">
+                <button class="search-icon-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                </div>
             </header>
             <section id="filters">
                 <!--tags filter section-->
-                <div class="dropdown" id="ingredient-filter">
-                    <label for="ingredients">Ingredients</label>
-                    <input type="text" id="ingredients" placeholder="search for ingredients">
-                    <ul id="ingredients-list"></ul>
-                </div>
-                <div class="dropdown" id="appliences-filter">
-                    <label for="appliences">Appliences</label>
-                    <input type="text" id="appliences" placeholder="search for appliences">
-                    <ul id="appliences-list"></ul>
-                </div>
-                <div class="dropdown" id="utensils-filter">
-                    <label for="utensils">Utensils</label>
-                    <input type="text" id="utensils" placeholder="search for utensils">
-                    <ul id="utensils-list"></ul>
-                </div>
+  <!-- INGREDIENTS -->
+<div class="dropdown" id="ingredient-filter">
+  <button class="dropdown-toggle">Ingrédients <i class="fa fa-chevron-down"></i></button>
+  <div class="dropdown-content">
+    <input type="text" id="ingredients" placeholder="search for ingredients" />
+    <ul id="ingredients-list" class="dropdown-list"></ul>
+  </div>
+</div>
+
+<!-- APPLIANCES -->
+<div class="dropdown" id="appliences-filter">
+  <button class="dropdown-toggle">Appliances <i class="fa fa-chevron-down"></i></button>
+  <div class="dropdown-content">
+    <input type="text" id="appliences" placeholder="search for appliances" />
+    <ul id="appliences-list" class="dropdown-list"></ul>
+  </div>
+</div>
+
+<!-- UTENSILS -->
+<div class="dropdown" id="utensils-filter">
+  <button class="dropdown-toggle">Utensils <i class="fa fa-chevron-down"></i></button>
+  <div class="dropdown-content">
+    <input type="text" id="utensils" placeholder="search for utensils" />
+    <ul id="utensils-list" class="dropdown-list"></ul>
+  </div>
+</div>
+
             </section>
             <!--selected tags-->
             <section id="selected-tags">

@@ -6,7 +6,7 @@ const recipieContainer = document.getElementById("recipies-container");
 function createRecipeCard(recipes){
     return`
     <article class = "recipie-card">
-        <img src="/scripts/recipes/${recipes.image}" alt="${recipes.name}"/>
+        <img src="/JSON_recipes/${recipes.image}" alt="${recipes.name}"/>
         <div class="recipe-header">
             <h2>${recipes.name}</h2>
             <span class="time"><i class="far-fa clock">${recipes.time}min</i></span>
