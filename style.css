@@ -1,7 +1,14 @@
+body p  {
+    font-family: 'Manrope', sans-serif;
+}
+h1 h2 h3 {
+    font-family: 'Anton', sans-serif;
+}
 header img {
     width: 100%;
     height: 660px;
     position: relative;
+    object-fit: cover;
 }
 header h1 {
     position: absolute;
@@ -18,52 +25,194 @@ header p {
     margin: 0;
 }
 .searchbar {
-    position: absolute;
-    bottom: 35%;
-    left: 16%;
+  position: absolute;
+  bottom: 35%;
+  left: 16%;
+  width: 75%;
+  display: flex;
+  align-items: center;
+  position: absolute;
 }
+
 #main-search {
-        width: 800px;
-    height: 35px;
-    border-radius: 10px;
+  width: 100%;
+  height: 35px;
+  border-radius: 10px;
+  padding-left: 15px;
+  padding-right: 70px; /* reserve space for icons */
+  font-size: 16px;
+  position: relative;
 }
+
 .search-icon-btn {
-    width: 36px;
-    height: 33px;
-    position: absolute;
-    top: 4px;
-    right: 1%;
-    background-color: black;
-    border-radius: 9px;
+  position: absolute;
+  right: 10px;
+  height: 33px;
+  width: 36px;
+  background-color: black;
+  border-radius: 9px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.fa-solid {
-    color: white;
+
+.search-icon-btn:hover {
+  background-color: #ffd15d;
+  color: black;
 }
+
+.clear-icon {
+  position: absolute;
+  right: 55px;
+  font-size: 20px;
+  color: #888;
+  cursor: pointer;
+  display: none;
+}
+
+
 #filters {
     display: flex;
     padding: 20px;
     gap: 15%;
     background-color: lightgray;
 }
-.dropdown-toggle {
-    width: 105px;
-    height: 40px;
-    background-color: white;
-    border-radius: 5px;
+/* DROPDOWN CONTAINER */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-right: 1rem;
 }
+
+/* DROPDOWN TOGGLE BUTTON */
+.dropdown-toggle {
+  width: 160px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  font-weight: bold;
+}
+
+/* CONTENT INSIDE DROPDOWN (input + list) */
+.dropdown-content {
+  display: none;
+  flex-direction: column;
+  background: white;
+  padding: 10px;
+  position: absolute;
+  top: 110%; /* below the button */
+  z-index: 100;
+  width: 250px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+/* WHEN DROPDOWN IS OPEN, SHOW CONTENT */
+.dropdown.open .dropdown-content {
+  display: flex;
+}
+
+/* THE INPUT INSIDE DROPDOWN */
+.dropdown-content input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+/* THE LIST ITSELF */
+.dropdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+/* EACH LIST ITEM */
+.dropdown-list li {
+  padding: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* ON HOVER */
+.dropdown-list li:hover {
+  background-color: #eee;
+}
+
+/* HIGHLIGHTED MATCHING PART */
+.highlight {
+  background-color: #ffd15d;
+  font-weight: bold;
+}
+/* When hovering over any dropdown list item */
+.dropdown-list li:hover {
+  background-color: #ffd15d;
+  color: black;
+}
+.dropdown-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-input-wrapper input {
+  padding: 8px 35px 8px 30px; /* left and right for icons */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Magnifying glass icon */
+.dropdown-input-wrapper i.fa-search {
+  position: absolute;
+  right: 30px;
+  top: 37%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+/* Clear icon */
+.filter-clear {
+  position: absolute;
+  right: 52px;
+  top: 39%;
+  transform: translateY(-50%);
+  color: #666;
+  cursor: pointer;
+  font-size: 18px;
+  display: none;
+}
+
+
+
 .recipie-card img {
-    width: 234px;
-    height: 250px;
+    width: 340px;
+    height: 253px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover;
 }
 .recipie-card {
     display: flex;
     flex-direction: column;
-    width: 234px;
-    border: 2px solid #CCC;
-    border-radius: 9px;
-    padding: 15px;
+    width: 340px;
     background-color: white;
-
+    position:relative;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.time {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffd15d;
+    padding: 9px;
+    border-radius: 30px;
 }
 #recipies-container {
     display: flex;
@@ -71,4 +220,32 @@ header p {
     justify-content: center;
     background-color: lightgray;
     gap: 60px;
+}
+h3 {
+    margin: 0;
+    padding: 15px;
+    color: grey;
+}
+.recipe-header {
+    margin: 0;
+    padding: 15px;
+}
+.description {
+    margin: 0;
+    padding: 15px;
+}
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    padding: 15px;
+    margin: 0;
+}
+.far-fa.clock {
+    border: 2px solid #ccc;
+    border-radius: 27px;
+    background-color: #ffd15d;
+    padding: 5px;
+    position: absolute;
+    top: 25px;
+    right: 25px;
 }

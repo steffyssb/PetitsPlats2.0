@@ -1,41 +1,39 @@
-//render recipies from the global variable//
 const recipieContainer = document.getElementById("recipies-container");
 
-// function to generate html for one recipie //
-
-function createRecipeCard(recipes){
-    return`
-    <article class = "recipie-card">
-        <img src="/JSON_recipes/${recipes.image}" alt="${recipes.name}"/>
-        <div class="recipe-header">
-            <h2>${recipes.name}</h2>
-            <span class="time"><i class="far-fa clock">${recipes.time}min</i></span>
-        </div>
-        <div class="recipe-body">
-            <div class="ingredients">
-                      ${recipes.ingredients
-            .map((ing) => {
-              let quantity = ing.quantity ? `: ${ing.quantity}` : "";
-              if (ing.unit) quantity += ` ${ing.unit}`;
-              return `<p><strong>${ing.ingredient}</strong>${quantity}</p>`;
-            })
-            .join("")}
-            </div>
-            <p class="description">${recipes.description}</p>
-        </div>       
+function createRecipeCard(recipe) {
+  return `
+    <article class="recipie-card">
+      <img src="/JSON_recipes/${recipe.image}" alt="${recipe.name}"/>
+      <span class="time"><i class="fa-regular fa-clock"></i> ${recipe.time} min</span>
+      <div class="recipe-header">
+        <h2>${recipe.name}</h2>
+      </div>
+      <h3>Recette</h3>
+      <div class="recipie-description">
+        <p class="description">${recipe.description}</p>
+      </div>
+      <h3>Ingrédients</h3>
+      <div class="ingredients-grid">
+        ${recipe.ingredients
+          .map((ing) => {
+            let quantity = ing.quantity ? `: ${ing.quantity}` : "";
+            if (ing.unit) quantity += ` ${ing.unit}`;
+            return `<div class="ingredient-item"><strong>${ing.ingredient}</strong>${quantity}</div>`;
+          })
+          .join("")}
+      </div>
     </article>
-`;
+  `;
 }
 
-//function to render all recipes//
+// Display function (required by search.js)
+function displayRecipes(recipes) {
+  recipieContainer.innerHTML = "";
 
-function displayRecipes(recipes){
-    recipieContainer.innerHTML="";
-    if (recipes.length === 0){
-    recipieContainer.innerHTML=`<p>No recipe found</p>`;
+  if (recipes.length === 0) {
+    recipieContainer.innerHTML = "<p>Aucune recette trouvée.</p>";
     return;
-    }
-     recipieContainer.innerHTML=recipes.map(createRecipeCard).join("");
+  }
+
+  recipieContainer.innerHTML = recipes.map(createRecipeCard).join("");
 }
-// call it initially with all its recipes//
-displayRecipes(recipes);
