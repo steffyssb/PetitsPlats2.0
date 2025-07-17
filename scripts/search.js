@@ -12,7 +12,7 @@ input.addEventListener("input", () => {
   const searchTerm = input.value.toLowerCase();
   const clearBtn = input.parentElement.querySelector(".filter-clear");
 
-  // Show or hide the ❌ clear icon
+  // Show or hide the x clear icon
   clearBtn.style.display = searchTerm ? "block" : "none";
 
   list.querySelectorAll("li").forEach((li) => {
@@ -51,7 +51,7 @@ const clearBtn = document.getElementById("clear-search");
   searchInput.addEventListener("input", (e) => {
     const searchTerm = e.target.value.trim().toLowerCase();
 
-    // Show or hide ❌ cross icon
+    // Show or hide x cross icon
     clearBtn.style.display = searchTerm.length > 0 ? "inline" : "none";
 
     if (searchTerm.length < 3) {

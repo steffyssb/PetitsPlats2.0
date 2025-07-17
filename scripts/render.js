@@ -18,7 +18,7 @@ function createRecipeCard(recipe) {
           .map((ing) => {
             let quantity = ing.quantity ? `: ${ing.quantity}` : "";
             if (ing.unit) quantity += ` ${ing.unit}`;
-            return `<div class="ingredient-item"><strong>${ing.ingredient}</strong>${quantity}</div>`;
+            return `<div class="ingredient-item"><p>${ing.ingredient}</p>${quantity}</div>`;
           })
           .join("")}
       </div>
@@ -28,12 +28,16 @@ function createRecipeCard(recipe) {
 
 // Display function (required by search.js)
 function displayRecipes(recipes) {
+      const container = document.getElementById("recipies-container");
+  const countElement = document.getElementById("recipe-count");
   recipieContainer.innerHTML = "";
+
 
   if (recipes.length === 0) {
     recipieContainer.innerHTML = "<p>Aucune recette trouvée.</p>";
     return;
   }
-
   recipieContainer.innerHTML = recipes.map(createRecipeCard).join("");
+  countElement.textContent = `${recipes.length} recette${recipes.length > 1 ? "s" : ""}`;
 }
+
