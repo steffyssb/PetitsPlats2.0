@@ -3,7 +3,7 @@ const recipieContainer = document.getElementById("recipies-container");
 function createRecipeCard(recipe) {
   return `
     <article class="recipie-card">
-      <img src="/JSON_recipes/${recipe.image}" alt="${recipe.name}"/>
+      <img src="./JSON_recipes/${recipe.image}" alt="${recipe.name}"/>
       <span class="time"><i class="fa-regular fa-clock"></i> ${recipe.time} min</span>
       <div class="recipe-header">
         <h2>${recipe.name}</h2>
