@@ -125,33 +125,75 @@ const clearBtn = document.getElementById("clear-search");
     });
 }
 
-  // FILTER BY CLICKING A TAG
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("tag-option")) {
-      const tagValue = e.target.textContent.toLowerCase();
-      const tagType = e.target.getAttribute("data-type");
-      console.log(`🏷️ Tag clicked: ${tagType} = ${tagValue}`);
+ // FILTER BY CLICKING A TAG
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("tag-option")) {
+    const tagValue = e.target.textContent.toLowerCase();
+    const tagType = e.target.getAttribute("data-type");
 
-      const filtered = recipes.filter((recipe) => {
-        if (tagType === "ingredient") {
-          return recipe.ingredients.some((ing) =>
-            ing.ingredient.toLowerCase().includes(tagValue)
-          );
-        } else if (tagType === "appliance") {
-          return recipe.appliance.toLowerCase().includes(tagValue);
-        } else if (tagType === "utensil") {
-          return recipe.ustensils.some((u) =>
-            u.toLowerCase().includes(tagValue)
-          );
-        }
-      });
+    // Add tag visually + trigger filtering
+    addTagToUI(tagValue, tagType);
+  }
+});
 
-      console.log("📦 Filtered by tag:", filtered.length);
-      displayRecipes(filtered);
-      displayFilterLists(filtered);
-    }
+// FUNCTION TO ADD SELECTED TAG TO UI
+function addTagToUI(tagText, type) {
+  const selectedTagsContainer = document.getElementById("selected-tags");
+
+  const exists = [...selectedTagsContainer.querySelectorAll(".tag")].some(
+    (tag) => tag.dataset.value === tagText && tag.dataset.type === type
+  );
+  if (exists) return;
+
+  const tag = document.createElement("div");
+  tag.className = "tag";
+  tag.dataset.type = type;
+  tag.dataset.value = tagText;
+  tag.innerHTML = `${tagText} <span class="tag-remove" style="cursor:pointer;">&times;</span>`;
+  selectedTagsContainer.appendChild(tag);
+
+  filterRecipesByTags();
+
+  tag.querySelector(".tag-remove").addEventListener("click", () => {
+    tag.remove();
+    filterRecipesByTags();
+  });
+}
+
+// ✅ Move this outside (global)
+function filterRecipesByTags() {
+  const selectedTags = [...document.querySelectorAll("#selected-tags .tag")];
+
+  if (selectedTags.length === 0) {
+    displayRecipes(recipes);
+    displayFilterLists(recipes);
+    return;
+  }
+
+  let filtered = [...recipes];
+
+  selectedTags.forEach((tag) => {
+    const value = tag.dataset.value;
+    const type = tag.dataset.type;
+
+    filtered = filtered.filter((recipe) => {
+      if (type === "ingredient") {
+        return recipe.ingredients.some((ing) =>
+          ing.ingredient.toLowerCase().includes(value)
+        );
+      } else if (type === "appliance") {
+        return recipe.appliance.toLowerCase().includes(value);
+      } else if (type === "utensil") {
+        return recipe.ustensils.some((u) =>
+          u.toLowerCase().includes(value)
+        );
+      }
+    });
   });
 
+  displayRecipes(filtered);
+  displayFilterLists(filtered);
+}
   // INITIAL RENDER
 displayRecipes(recipes);
 displayFilterLists(recipes);
