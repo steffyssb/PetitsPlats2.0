@@ -26,7 +26,17 @@ L’objectif principal était d’implémenter une fonctionnalité de recherche 
 
 ## Arborescence du projet
 
-
+📁 les-petits-plats/
+├── index.html
+├── style.css
+├── render.js
+├── search.js
+├── loop-search.js # Version alternative pour la fiche d’investigation
+├── data/
+│ └── recipes.js # Fichier JSON avec 50 recettes
+├── assets/ # Images des recettes
+├── diagrams/ # Algorigrammes réalisés sur draw.io
+└── fiche-investigation.pdf
 ---
 
 ## Lancer le projet
