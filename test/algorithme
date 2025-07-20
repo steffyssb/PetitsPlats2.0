@@ -1,0 +1,39 @@
+// loop-search.js
+
+/**
+ * Version utilisant des boucles pour le moteur de recherche principal
+ * Cette version permet de comparer la performance avec la version fonctionnelle
+ * Utilisée uniquement à des fins de test et d'investigation
+ */
+
+function loopSearch(recipes, searchTerm) {
+  const results = [];
+  const term = searchTerm.toLowerCase();
+
+  for (let i = 0; i < recipes.length; i++) {
+    const recipe = recipes[i];
+
+    // Vérifier le nom ou la description
+    if (
+      recipe.name.toLowerCase().includes(term) ||
+      recipe.description.toLowerCase().includes(term)
+    ) {
+      results.push(recipe);
+      continue;
+    }
+
+    // Vérifier les ingrédients
+    for (let j = 0; j < recipe.ingredients.length; j++) {
+      const ing = recipe.ingredients[j];
+      if (ing.ingredient.toLowerCase().includes(term)) {
+        results.push(recipe);
+        break; // On passe à la recette suivante si un ingrédient correspond
+      }
+    }
+  }
+  return results;
+}
+
+// Exemple d'utilisation :
+// const filteredRecipes = loopSearch(recipes, "chocolat");
+// displayRecipes(filteredRecipes);
