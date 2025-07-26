@@ -1,3 +1,4 @@
+let currentSearchTerm = "";
 function setupDropdownSearch() {
   const inputs = [
     { id: "ingredients", listId: "ingredients-list" },
@@ -48,38 +49,21 @@ document.addEventListener("DOMContentLoaded", () => {
 const clearBtn = document.getElementById("clear-search");
 
   // MAIN SEARCH EVENT
-  searchInput.addEventListener("input", (e) => {
-    const searchTerm = e.target.value.trim().toLowerCase();
+searchInput.addEventListener("input", (e) => {
+  currentSearchTerm = e.target.value.trim().toLowerCase();
 
-    // Show or hide x cross icon
-    clearBtn.style.display = searchTerm.length > 0 ? "inline" : "none";
+  clearBtn.style.display = currentSearchTerm.length > 0 ? "inline" : "none";
 
-    if (searchTerm.length < 3) {
-      displayRecipes(recipes);
-      displayFilterLists(recipes);
-      searchButton.classList.remove("active"); // Reset yellow
-      return;
-    }
+  applyAllFilters(); // ✅ combines main search + tag filters
+});
 
-    const filteredRecipes = recipes.filter((recipe) => {
-      return (
-        recipe.name.toLowerCase().includes(searchTerm) ||
-        recipe.description.toLowerCase().includes(searchTerm) ||
-        recipe.ingredients.some((ing) =>
-          ing.ingredient.toLowerCase().includes(searchTerm)
-        )
-      );
-    });
-
-    displayRecipes(filteredRecipes);
-    displayFilterLists(filteredRecipes);
-  });
   clearBtn.addEventListener("click", () => {
   searchInput.value = "";
   clearBtn.style.display = "none";
   searchButton.classList.remove("clicked"); // Reset yellow
   displayRecipes(recipes);
   displayFilterLists(recipes);
+   applyAllFilters();
 });
 
 
@@ -152,26 +136,33 @@ function addTagToUI(tagText, type) {
   tag.innerHTML = `${tagText} <span class="tag-remove" style="cursor:pointer;">&times;</span>`;
   selectedTagsContainer.appendChild(tag);
 
-  filterRecipesByTags();
+  applyAllFilters();
 
   tag.querySelector(".tag-remove").addEventListener("click", () => {
     tag.remove();
-    filterRecipesByTags();
+    applyAllFilters();
   });
 }
 
 // ✅ Move this outside (global)
-function filterRecipesByTags() {
-  const selectedTags = [...document.querySelectorAll("#selected-tags .tag")];
-
-  if (selectedTags.length === 0) {
-    displayRecipes(recipes);
-    displayFilterLists(recipes);
-    return;
-  }
-
+function applyAllFilters() {
   let filtered = [...recipes];
 
+  // Step 1: Filter by main search if length >= 3
+  if (currentSearchTerm.length >= 3) {
+    filtered = filtered.filter((recipe) => {
+      return (
+        recipe.name.toLowerCase().includes(currentSearchTerm) ||
+        recipe.description.toLowerCase().includes(currentSearchTerm) ||
+        recipe.ingredients.some((ing) =>
+          ing.ingredient.toLowerCase().includes(currentSearchTerm)
+        )
+      );
+    });
+  }
+
+  // Step 2: Filter by tags
+  const selectedTags = [...document.querySelectorAll("#selected-tags .tag")];
   selectedTags.forEach((tag) => {
     const value = tag.dataset.value;
     const type = tag.dataset.type;
@@ -191,9 +182,11 @@ function filterRecipesByTags() {
     });
   });
 
+  // Final display
   displayRecipes(filtered);
   displayFilterLists(filtered);
 }
+
   // INITIAL RENDER
 displayRecipes(recipes);
 displayFilterLists(recipes);
