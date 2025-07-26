@@ -54,7 +54,7 @@ searchInput.addEventListener("input", (e) => {
 
   clearBtn.style.display = currentSearchTerm.length > 0 ? "inline" : "none";
 
-  applyAllFilters(); // ✅ combines main search + tag filters
+  applyAllFilters(); //  combines main search + tag filters
 });
 
   clearBtn.addEventListener("click", () => {
@@ -144,7 +144,7 @@ function addTagToUI(tagText, type) {
   });
 }
 
-// ✅ Move this outside (global)
+//  Move this outside (global)
 function applyAllFilters() {
   let filtered = [...recipes];
 
@@ -191,7 +191,7 @@ function applyAllFilters() {
 displayRecipes(recipes);
 displayFilterLists(recipes);
 
-// ✅ Delay setup until the dropdown <li>s and <input>s are in the DOM
+//  Delay setup until the dropdown <li>s and <input>s are in the DOM
 setTimeout(() => {
   setupDropdownSearch();
 }, 0);
