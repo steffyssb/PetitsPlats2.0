@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+    <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Les Pétit Plats </title>
+    </head>
+        <body>
+            <header>
+                <!--main search bar-->
+                <img src="./JSON_recipes/headerimg.jpg" alt="image of the cover picture"/>
+<div class="header-title">
+  <h1>LES PETITS PLATS</h1>
+  <span class="circle-icon">
+    <i class="fa-regular fa-circle outer"></i>
+    <i class="fa-solid fa-circle inner"></i>
+  </span>
+</div>
+                <p>CHERCHES PARMI PLUS DE 1500 RECETTES<br>DE QUOTIDIEN,SIMPLES ET DELICIEUSES</p>
+<div class="searchbar">
+  <input type="text" id="main-search" placeholder="Recherche une recette..." aria-label="Main Search Bar">
+  <span id="clear-search" class="clear-icon" style="display: none;">&times;</span>
+  <button class="search-icon-btn" id="search-button" type="button">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+</div>
+            </header>
+            <section id="filters">
+                            <div id="top-bar">
+  <div id="recipe-count">0 recettes</div>
+</div>
+                <!--tags filter section-->
+  <!-- INGREDIENTS -->
+<!-- INGREDIENT FILTER -->
+<div class="dropdown" id="ingredient-filter">
+  <button class="dropdown-toggle">Ingrédients <i class="fa fa-chevron-down"></i></button>
+<div class="dropdown-content">
+  <div class="dropdown-input-wrapper">
+    <i class="fa fa-search"></i>
+    <input type="text" id="ingredients" placeholder="Rechercher..." />
+    <span class="filter-clear" data-input="ingredients">&times;</span>
+  </div>
+  <ul id="ingredients-list" class="dropdown-list"></ul>
+</div>
+
+</div>
+
+<!-- Same for appliances -->
+<div class="dropdown" id="appliences-filter">
+  <button class="dropdown-toggle">Appareils <i class="fa fa-chevron-down"></i></button>
+  <div class="dropdown-content">
+    <div class="dropdown-input-wrapper">
+      <i class="fa fa-search"></i>
+      <input type="text" id="appliences" placeholder="Rechercher..." />
+      <span class="filter-clear" data-input="appliences">&times;</span>
+    </div>
+    <ul id="appliences-list" class="dropdown-list"></ul>
+  </div>
+</div>
+
+<!-- Same for utensils -->
+<div class="dropdown" id="utensils-filter">
+  <button class="dropdown-toggle">Ustensiles <i class="fa fa-chevron-down"></i></button>
+  <div class="dropdown-content">
+    <div class="dropdown-input-wrapper">
+      <i class="fa fa-search"></i>
+      <input type="text" id="utensils" placeholder="Rechercher..." />
+      <span class="filter-clear" data-input="utensils">&times;</span>
+    </div>
+    <ul id="utensils-list" class="dropdown-list"></ul>
+  </div>
+</div>
+
+            </section>
+            <!--selected tags-->
+            <section id="selected-tags">
+                <!--selected tags will appear here-->
+            </section>
+            <!--main recipies-->
+            <main id="recipies-container">
+                <!--card for recipies will be installed here-->
+            </main>
+            <!--scripts-->
+            <script src="./scripts/recipes.js"></script>
+            <script src="./scripts/render.js"></script>
+            <script src="./scripts/search.js"></script>
+        </body>
+</html>
