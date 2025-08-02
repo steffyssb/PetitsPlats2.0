@@ -1,72 +1,76 @@
-# PetitsPlats2.0
-P7 JS 2.0 Les petits plats
-# Les Petits Plats - Moteur de recherche performant
+# Les Petits Plats — Moteur de Recherche Haute Performance
 
-## Présentation du projet
+Ce projet est réalisé dans le cadre d’un défi de développement front-end. L'objectif est de construire un **site de recettes** performant pour "Les Petits Plats", incluant un **moteur de recherche personnalisé** développé entièrement en JavaScript (sans bibliothèques externes).
 
-Ce projet a été réalisé dans le cadre d'une mission freelance pour l'entreprise **Les Petits Plats**, dans le but de développer un site de recettes avec un **moteur de recherche rapide et efficace**, inspiré de Marmiton ou 750g.
+## 🎯 Objectif du projet
 
-L’objectif principal était d’implémenter une fonctionnalité de recherche performante, tout en respectant les maquettes Figma fournies, les bonnes pratiques de développement, ainsi que la conformité W3C.
-
----
-
-## Fonctionnalités principales
-
-- Barre de recherche principale (active après 3 caractères)
-- Filtres dynamiques par **ingrédients**, **appareils**, **ustensiles**
-- Affichage en temps réel des recettes filtrées
-- Système de **tags cliquables** avec suppression individuelle
-- Highlight des options filtrées
-- Accessibilité UX (icônes d’effacement, navigation fluide)
-- **Deux versions** du moteur de recherche implémentées :
-  - Une version **boucles classiques** (`loop-search.js`)
-  - Une version **programmation fonctionnelle** (utilisée dans le projet final)
+Développer un moteur de recherche capable de :
+- Rechercher parmi les recettes (nom, description, ingrédients)
+- Filtrer les recettes à l’aide de tags (ingrédients, appareils, ustensiles)
+- Gérer des volumes de données importants (jusqu’à plusieurs milliers de recettes)
 
 ---
 
-## Arborescence du projet
+## 🌐 Démo en ligne
 
-📁 les-petits-plats/
-├── index.html
-├── style.css
-├── render.js
-├── search.js
-├── loop-search.js # Version alternative pour la fiche d’investigation
-├── data/
-│ └── recipes.js # Fichier JSON avec 50 recettes
-├── assets/ # Images des recettes
-├── diagrams/ # Algorigrammes réalisés sur draw.io
-└── fiche-investigation.pdf
----
-
-## Lancer le projet
-
-1. Cloner ou télécharger ce dépôt.
-2. Ouvrir le fichier `index.html` dans votre navigateur.
-3. Aucun serveur nécessaire (100% client-side).
+👉 Voir le site en ligne : [Les Petits Plats](https://steffyssb.github.io/PetitsPlats2.0/)
 
 ---
 
-## Comparaison des algorithmes
+## 🔍 Algorithmes de recherche
 
-Une **fiche d’investigation de fonctionnalité** est incluse dans le projet (`fiche-investigation.pdf`) avec :
+Ce projet contient **deux implémentations distinctes** du moteur de recherche :
 
-- Une analyse des deux versions du moteur de recherche
-- Diagrammes explicatifs
-- Tests de performance réalisés avec [jsben.ch](https://jsben.ch)
-- Recommandation finale basée sur la lisibilité et les performances
+| Branche GitHub | Description |
+|----------------|-------------|
+| [`main`](https://github.com/Steffyssb/PetitsPlats2.0/tree/main) | Contient la version **fonctionnelle** utilisant `filter`, `some`, etc. — claire et performante |
+| [`loopversion`](https://github.com/Steffyssb/PetitsPlats2.0/tree/loopversion) | Contient une version **avec boucles `for`** — plus traditionnelle |
+
+### 🔁 Tester les deux versions
+- Sur GitHub, sélectionne la branche souhaitée dans le menu déroulant.
+- Le HTML et le style sont identiques ; seule la logique de recherche change.
 
 ---
 
-## Stack technique
+## 🛠️ Technologies utilisées
 
 - HTML5 / CSS3
-- JavaScript Vanilla (pas de framework JS)
-- Responsive et design respecté selon Figma
-- Bonne pratique : Green code, composants modulaires, sécurité (protection contre injection HTML)
+- JavaScript (ES6+)
+- Aucune bibliothèque externe (100% JavaScript natif)
+- Figma (pour suivre la maquette)
+- jsben.ch (comparaison de performances)
 
 ---
 
-## Auteur
+## 📁 Structure du projet
+📂 PetitsPlats2.0/
+├── 📄 index.html
+├── 📁 scripts/
+│ ├── render.js # Rendu visuel des recettes
+│ ├── search.js # Version fonctionnelle (branche main)
+│ ├── loop.js # Version boucle (branche loopversion)
+├── 📁 styles/
+│ └── style.css # Feuille de style principale
+├── 📁 assets/ # Images et icônes
+└── 📄 README.md # Ce fichier de documentation
 
-Projet réalisé par steffy suma babu - Développeur Front-End freelance.
+
+---
+
+## 🌱 Branches disponibles
+
+Pour changer de version :
+1. Va sur la page du dépôt GitHub
+2. Utilise le menu déroulant des branches :
+   - `main` pour la version fonctionnelle
+   - `loopversion` pour la version boucle
+
+Ou bien, en ligne de commande :
+
+```bash
+git clone https://github.com/Steffyssb/PetitsPlats2.0.git
+cd PetitsPlats2.0
+git checkout loopversion   # ou git checkout main
+
+
+
