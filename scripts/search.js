@@ -53,18 +53,29 @@ searchInput.addEventListener("input", (e) => {
   currentSearchTerm = e.target.value.trim().toLowerCase();
 
   clearBtn.style.display = currentSearchTerm.length > 0 ? "inline" : "none";
-
-  applyAllFilters(); //  combines main search + tag filters
 });
 
-  clearBtn.addEventListener("click", () => {
+clearBtn.addEventListener("click", () => {
   searchInput.value = "";
+  currentSearchTerm = "";
   clearBtn.style.display = "none";
-  searchButton.classList.remove("clicked"); // Reset yellow
+  searchButton.classList.remove("clicked");
   displayRecipes(recipes);
   displayFilterLists(recipes);
-   applyAllFilters();
 });
+
+searchButton.addEventListener("click", () => {
+  currentSearchTerm = searchInput.value.trim().toLowerCase();
+
+  if (currentSearchTerm.length >= 3) {
+    searchButton.classList.add("clicked");
+  } else {
+    searchButton.classList.remove("clicked");
+  }
+
+  applyAllFilters(); // ✅ Trigger search when button is clicked
+});
+
 
 
   // GET ALL TAGS
