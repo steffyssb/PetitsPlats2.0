@@ -66,6 +66,16 @@ Une **fiche d’investigation de fonctionnalité** est incluse dans le projet (`
 - Bonne pratique : Green code, composants modulaires, sécurité (protection contre injection HTML)
 
 ---
+##  Structure des branches
+
+Ce dépôt contient plusieurs branches, chacune correspondant à une version spécifique du moteur de recherche :
+
+- `main` → Branche principale contenant la version finale du site en production (celle utilisée par GitHub Pages)
+- `functional` → Version utilisant une approche fonctionnelle (avec `.filter()`, `.some()`, etc.) pour le moteur de recherche
+- `loopversion` → Version procédurale utilisant uniquement des boucles `for` et sans méthodes fonctionnelles, conformément aux critères de validation
+
+Chaque branche est indépendante pour permettre la comparaison des performances et des logiques de recherche.
+
 
 ## Auteur
 
