@@ -1,5 +1,6 @@
 let currentSearchTerm = "";
 
+// Manual lowercase conversion
 function toLowerManual(str) {
   let result = "";
   for (let i = 0; i < str.length; i++) {
@@ -13,6 +14,20 @@ function toLowerManual(str) {
   return result;
 }
 
+// Add value to array without push()
+function addToArray(arr, value) {
+  arr[arr.length] = value;
+}
+
+// Check if value exists in array
+function arrayIncludes(arr, value) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === value) return true;
+  }
+  return false;
+}
+
+// Dropdown search setup
 function setupDropdownSearch() {
   const inputs = [
     { id: "ingredients", listId: "ingredients-list" },
@@ -20,9 +35,13 @@ function setupDropdownSearch() {
     { id: "utensils", listId: "utensils-list" }
   ];
 
-  inputs.forEach(({ id, listId }) => {
+  for (let idx = 0; idx < inputs.length; idx++) {
+    const id = inputs[idx].id;
+    const listId = inputs[idx].listId;
+
     const input = document.getElementById(id);
     const list = document.getElementById(listId);
+
     input.addEventListener("input", () => {
       const searchTerm = toLowerManual(input.value);
       const clearBtn = input.parentElement.querySelector(".filter-clear");
@@ -54,7 +73,7 @@ function setupDropdownSearch() {
         input.dispatchEvent(new Event("input"));
       });
     });
-  });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -84,16 +103,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let i = 0; i < recipes.length; i++) {
       const recipe = recipes[i];
+
       for (let j = 0; j < recipe.ingredients.length; j++) {
         const ing = toLowerManual(recipe.ingredients[j].ingredient);
-        if (!ingredients.includes(ing)) ingredients.push(ing);
+        if (!arrayIncludes(ingredients, ing)) addToArray(ingredients, ing);
       }
+
       const app = toLowerManual(recipe.appliance);
-      if (!appliances.includes(app)) appliances.push(app);
+      if (!arrayIncludes(appliances, app)) addToArray(appliances, app);
 
       for (let j = 0; j < recipe.ustensils.length; j++) {
         const ust = toLowerManual(recipe.ustensils[j]);
-        if (!utensils.includes(ust)) utensils.push(ust);
+        if (!arrayIncludes(utensils, ust)) addToArray(utensils, ust);
       }
     }
 
@@ -161,9 +182,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function applyAllFilters() {
     const selectedTagElems = document.querySelectorAll("#selected-tags .tag");
     const selectedTags = [];
+
     for (let i = 0; i < selectedTagElems.length; i++) {
       const tag = selectedTagElems[i];
-      selectedTags.push({ value: tag.dataset.value, type: tag.dataset.type });
+      addToArray(selectedTags, { value: tag.dataset.value, type: tag.dataset.type });
     }
 
     const results = [];
@@ -175,21 +197,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const ingredients = [];
       for (let j = 0; j < recipe.ingredients.length; j++) {
-        ingredients.push(toLowerManual(recipe.ingredients[j].ingredient));
+        addToArray(ingredients, toLowerManual(recipe.ingredients[j].ingredient));
       }
 
       const appliance = toLowerManual(recipe.appliance);
       const ustensils = [];
       for (let j = 0; j < recipe.ustensils.length; j++) {
-        ustensils.push(toLowerManual(recipe.ustensils[j]));
+        addToArray(ustensils, toLowerManual(recipe.ustensils[j]));
       }
 
       let matchesSearch = false;
       if (currentSearchTerm.length < 3) {
         matchesSearch = true;
       } else {
-        if (name.indexOf(currentSearchTerm) !== -1 ||
-            description.indexOf(currentSearchTerm) !== -1) {
+        if (name.indexOf(currentSearchTerm) !== -1 || description.indexOf(currentSearchTerm) !== -1) {
           matchesSearch = true;
         } else {
           for (let k = 0; k < ingredients.length; k++) {
@@ -206,26 +227,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const value = selectedTags[t].value;
         const type = selectedTags[t].type;
 
-        if (type === "ingredient") {
-          if (ingredients.indexOf(value) === -1) {
-            matchesTags = false;
-            break;
-          }
-        } else if (type === "appliance") {
-          if (appliance.indexOf(value) === -1) {
-            matchesTags = false;
-            break;
-          }
-        } else if (type === "utensil") {
-          if (ustensils.indexOf(value) === -1) {
-            matchesTags = false;
-            break;
-          }
+        if (type === "ingredient" && !arrayIncludes(ingredients, value)) {
+          matchesTags = false;
+          break;
+        }
+        if (type === "appliance" && appliance.indexOf(value) === -1) {
+          matchesTags = false;
+          break;
+        }
+        if (type === "utensil" && !arrayIncludes(ustensils, value)) {
+          matchesTags = false;
+          break;
         }
       }
 
       if (matchesSearch && matchesTags) {
-        results.push(recipe);
+        addToArray(results, recipe);
       }
     }
 
@@ -251,3 +268,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
