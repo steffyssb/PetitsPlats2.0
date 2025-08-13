@@ -73,7 +73,7 @@ searchButton.addEventListener("click", () => {
     searchButton.classList.remove("clicked");
   }
 
-  applyAllFilters(); // ✅ Trigger search when button is clicked
+  applyAllFilters(); // Trigger search when button is clicked
 });
 
 
